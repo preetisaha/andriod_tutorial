@@ -11,8 +11,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class StartService extends Service {
 
-    private final AtomicInteger count = new AtomicInteger();
-
     public StartService() {
     }
 
@@ -26,7 +24,7 @@ public class StartService extends Service {
 
         String input = intent.getStringExtra(StartServiceActivity.input1Key);
         String value = intent.getStringExtra(StartServiceActivity.input2Key);
-        executeTask(input, value);
+        executeTask(input, value, startId);
         return START_NOT_STICKY;
     }
 
@@ -42,9 +40,8 @@ public class StartService extends Service {
         System.out.println("======================================== OnDestroy Start service method");
     }
 
-    public void executeTask(final String input, String valueStr) {
+    public void executeTask(final String input, String valueStr, final int startId) {
         final Integer value = Integer.parseInt(valueStr);
-        count.incrementAndGet();
         new AsyncTask<String, Integer, Integer>() {
 
             @Override
@@ -60,8 +57,7 @@ public class StartService extends Service {
                     }
                 }
 
-//                if (count.decrementAndGet() == 0)
-//                    StartService.this.stopSelf();
+                StartService.this.stopSelf(startId);
 
                 return null;
             }
