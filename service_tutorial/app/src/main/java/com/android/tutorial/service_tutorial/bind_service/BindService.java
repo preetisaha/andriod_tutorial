@@ -39,7 +39,10 @@ public class BindService extends Service {
             @Override
             protected Integer doInBackground(String... strings) {
                 for(int count=0; count<20; count++){
-                    System.out.println("Thread is running");
+                    System.out.println("Thread is running - " + count);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {}
                 }
                 return (new Random()).nextInt();
             }

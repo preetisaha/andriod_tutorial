@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.tutorial.service_tutorial.R;
+import com.android.tutorial.service_tutorial.foreground.ForegroundServiceActivity;
 
 public class StartServiceActivity extends AppCompatActivity {
 
@@ -21,6 +22,7 @@ public class StartServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_service);
         Button button = (Button) findViewById(R.id.next);
+        Button foregroundButton = (Button) findViewById(R.id.foreground);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -31,6 +33,13 @@ public class StartServiceActivity extends AppCompatActivity {
                 createIntent(input.getText().toString(), value.getText().toString());
             }
         });
+
+        foregroundButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goToForegroundService();
+            }
+        });
     }
 
     public void createIntent(String input, String value){
@@ -38,5 +47,10 @@ public class StartServiceActivity extends AppCompatActivity {
         intent.putExtra(input1Key, (CharSequence) input);
         intent.putExtra(input2Key, (CharSequence) value);
         startService(intent);
+    }
+
+    public void goToForegroundService(){
+        Intent intent = new Intent(this, ForegroundServiceActivity.class);
+        startActivity(intent);
     }
 }
