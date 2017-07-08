@@ -5,6 +5,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,7 +15,7 @@ import android.widget.TextView;
 import com.android.tutorial.service_tutorial.R;
 import com.android.tutorial.service_tutorial.start_service.StartServiceActivity;
 
-public class MainActivity extends Activity implements ServiceConnection, BindService.CallBack {
+public class BindActivity extends Activity implements ServiceConnection, BindService.CallBack {
 
     private BindService myService;
     Button button;
@@ -26,13 +27,6 @@ public class MainActivity extends Activity implements ServiceConnection, BindSer
         button = findViewById(R.id.button);
         button.setEnabled(false);
 
-        Button StartService = findViewById(R.id.StartService);
-        StartService.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createIntent();
-            }
-        });
         Log.v(this.getClass().getName(), " ======================= OnCreate =================== ");
     }
 
@@ -78,23 +72,4 @@ public class MainActivity extends Activity implements ServiceConnection, BindSer
         textView.setText( ((Integer)value).toString() );
     }
 
-    public void createIntent(){
-        Intent intent = new Intent(this, StartServiceActivity.class);
-        startActivity(intent);
-    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -32,13 +32,6 @@ public class IntentServiceActivity extends AppCompatActivity {
             }
         });
 
-        Button parallelExecution = (Button) findViewById(R.id.parallelExecutionButton);
-        parallelExecution.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToParallelExecution();
-            }
-        });
     }
 
     public void sendMessage(){
@@ -53,8 +46,4 @@ public class IntentServiceActivity extends AppCompatActivity {
         startService(intentText);
     }
 
-    public void goToParallelExecution(){
-        Intent intent = new Intent(this, ParallelExecutionActivity.class);
-        startActivity(intent);
-    }
 }

@@ -22,7 +22,6 @@ public class StartServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_service);
         Button button = (Button) findViewById(R.id.next);
-        Button foregroundButton = (Button) findViewById(R.id.foreground);
 
         button.setOnClickListener(new View.OnClickListener() {
 
@@ -34,12 +33,6 @@ public class StartServiceActivity extends AppCompatActivity {
             }
         });
 
-        foregroundButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToForegroundService();
-            }
-        });
     }
 
     public void createIntent(String input, String value){
@@ -49,8 +42,4 @@ public class StartServiceActivity extends AppCompatActivity {
         startService(intent);
     }
 
-    public void goToForegroundService(){
-        Intent intent = new Intent(this, ForegroundServiceActivity.class);
-        startActivity(intent);
-    }
 }
