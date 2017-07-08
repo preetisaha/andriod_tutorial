@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ public class MainActivity extends Activity implements ServiceConnection, BindSer
                 createIntent();
             }
         });
+        Log.v(this.getClass().getName(), " ======================= OnCreate =================== ");
     }
 
     @Override
@@ -39,6 +41,7 @@ public class MainActivity extends Activity implements ServiceConnection, BindSer
         super.onResume();
         Intent bindIntent = new Intent(this, BindService.class);
         bindService(bindIntent, this, BIND_AUTO_CREATE);
+        Log.v(this.getClass().getName(), " ======================= OnResume =================== ");
     }
 
     @Override
@@ -47,6 +50,7 @@ public class MainActivity extends Activity implements ServiceConnection, BindSer
         if(myService != null){
             unbindService(this);
         }
+        Log.v(this.getClass().getName(), " ======================= OnPause =================== ");
     }
 
     @Override

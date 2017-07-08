@@ -28,13 +28,25 @@
             android:name=".start_service.StartService"
             android:enabled="true"
             android:exported="true" />
-
         <service
             android:name=".foreground.ForegroundService"
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".foreground.ForegroundServiceActivity"></activity>
+        <activity android:name=".foreground.ForegroundServiceActivity" />
+        <activity android:name=".intent_service.IntentServiceActivity" />
+
+        <service
+            android:name=".intent_service.MyIntentService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".parallel_execution.ParallelExecutionActivity" />
+
+        <service
+            android:name=".parallel_execution.ParallelExecutionService"
+            android:enabled="true"
+            android:exported="true"></service>
     </application>
 
 </manifest>
