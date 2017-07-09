@@ -1,16 +1,23 @@
 package com.android.tutorial.service_tutorial.start_service;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.annotation.IntDef;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class StartService extends Service {
 
+    public  static final String action = "com.android.tutorial.service_tutorial.start_service.StartService";
+    public static final String result = "com.android.tutorial.service_tutorial.start_service.RESULT";
     public StartService() {
     }
 
@@ -56,6 +63,11 @@ public class StartService extends Service {
                         e.printStackTrace();
                     }
                 }
+
+                LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(StartService.this);
+                Intent intent = new Intent(action);
+                intent.putExtra(result, (new Random()).nextInt());
+                localBroadcastManager.sendBroadcast(intent);
 
                 StartService.this.stopSelf(startId);
 
